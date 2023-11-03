@@ -7,8 +7,19 @@ services:
       - "8089:8089"
     volumes:
       - ./locust-tasks:/locust-tasks
-  worker:
+  slave1:
     image: locustio/locust
-    command: -f /locust-tasks/locustfile.py --worker --master-host master
+    command: -f /locust-tasks/locustfile.py --slave --master-host master
     volumes:
       - ./locust-tasks:/locust-tasks
+  slave2:
+    image: locustio/locust
+    command: -f /locust-tasks/locustfile.py --slave --master-host master
+    volumes:
+      - ./locust-tasks:/locust-tasks
+  slave3:
+    image: locustio/locust
+    command: -f /locust-tasks/locustfile.py --slave --master-host master
+    volumes:
+      - ./locust-tasks:/locust-tasks
+  # Add more slave containers as needed
